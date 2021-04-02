@@ -70,6 +70,7 @@ function generateModal() {
 }
 
 function browseModal(data, index) {
+  //Add listener to each cards
   const cardDiv = document.querySelectorAll('.card');
   for (let i = 0; i < cardDiv.length; i++) {
     cardDiv[i].addEventListener('click', () => {
@@ -77,12 +78,14 @@ function browseModal(data, index) {
       generateModal()
       const prevButton = document.querySelector('#modal-prev');
       const nextButton = document.querySelector('#modal-next');
+      //Update the modal info of selected card
       modalInfoUpdate(data[i])
 
       if (index < 0) {
-        nextButton.disabled = true;
+        prevButton.disabled = true;
       }
 
+      //Added listener for next/prev buttons
       [nextButton, prevButton].forEach(button => {
         button.addEventListener('click', (e) => {
           const clickedButton = e.target;
@@ -94,15 +97,13 @@ function browseModal(data, index) {
               modalContainer.remove();
               modalInfoUpdate(data[index]);
             }
-
             if (index === data.length - 1) {
               nextButton.disabled = true;
             } else if (index < data.length) {
               prevButton.disabled = false;
-            };
+            }
           }
-
-          else if (clickedButton.id == 'modal-prev') {
+           else if (clickedButton.id == 'modal-prev') {
             index--;
             if (index <= -1) {
               index = -1;
