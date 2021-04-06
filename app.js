@@ -90,7 +90,6 @@ function browseModal(data, index) {
         button.addEventListener('click', (e) => {
           const clickedButton = e.target;
           const modalContainer = document.querySelector('.modal-info-container');
-
           if (clickedButton.id == 'modal-next') {
             index++;
             if (index <= data.length) {
@@ -119,6 +118,15 @@ function browseModal(data, index) {
   }
 }
 
+function formatPhoneNumber(phoneNumberString) {
+  var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+  var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+  if (match) {
+    return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+  }
+  return "(132) 159 - 6244";
+}
+
 function modalInfoUpdate(employee) {
   let modalContainer = document.querySelector('.modal-btn-container');
   let modalEmployeeInfo =
@@ -128,9 +136,9 @@ function modalInfoUpdate(employee) {
               <p class="modal-text">${employee.email}</p>
               <p class="modal-text cap">${employee.location.city}</p>
               <hr>
-              <p class="modal-text">${employee.phone}</p>
+              <p class="modal-text">${formatPhoneNumber(employee.phone)}</p>
               <p class="modal-text">${employee.location.street.number} ${employee.location.street.name}, ${employee.location.city}, OR ${employee.location.postcode}</p>
-              <p class="modal-text">Birthday: ${employee.dob.date}</p>
+              <p class="modal-text">Birthday: ${moment(employee.dob.date).format("MMMM D YYYY")}</p>
             </div>`;
   modalContainer.insertAdjacentHTML('beforebegin', modalEmployeeInfo);
 }
