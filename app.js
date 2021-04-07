@@ -140,5 +140,6 @@ function modalInfoUpdate(employee) {
               <p class="modal-text">${employee.location.street.number} ${employee.location.street.name}, ${employee.location.city}, OR ${employee.location.postcode}</p>
               <p class="modal-text">Birthday: ${moment(employee.dob.date).format("MMMM D YYYY")}</p>
             </div>`;
+            //Used moment CDN for library to filter birthdays 
   modalContainer.insertAdjacentHTML('beforebegin', modalEmployeeInfo);
 }
