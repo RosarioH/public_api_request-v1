@@ -10,7 +10,7 @@ function fetchData(url) {
     .catch(error => console.log('Looks like there was a problem!', error));
 }
 
-fetchData('https://randomuser.me/api/?results=12&seed=employee')
+fetchData('https://randomuser.me/api/?results=12')
   .then(data => {
     let dataList = data.results
     generateCards(dataList)
