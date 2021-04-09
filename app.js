@@ -12,7 +12,7 @@ function fetchData(url) {
 
 fetchData('https://randomuser.me/api/?results=12')
   .then(data => {
-    let dataList = data.results
+    const dataList = data.results
     generateCards(dataList)
     browseModal(dataList)
   })
@@ -119,8 +119,8 @@ function browseModal(data, index) {
 }
 
 function formatPhoneNumber(phoneNumberString) {
-  var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
-  var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+  const cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+  const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
   if (match) {
     return '(' + match[1] + ') ' + match[2] + '-' + match[3];
   }
@@ -128,8 +128,8 @@ function formatPhoneNumber(phoneNumberString) {
 }
 
 function modalInfoUpdate(employee) {
-  let modalContainer = document.querySelector('.modal-btn-container');
-  let modalEmployeeInfo =
+  const modalContainer = document.querySelector('.modal-btn-container');
+  const modalEmployeeInfo =
     `<div class="modal-info-container">
               <img class="modal-img" src= ${employee.picture.large} alt="profile picture">
               <h3 id="name" class="modal-name cap">${employee.name.first} ${employee.name.last}</h3>
